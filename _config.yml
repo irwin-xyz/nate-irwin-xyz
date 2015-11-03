@@ -1,0 +1,10 @@
+baseurl: ""
+description: The online home of Nate Irwin, a digital cartographer from Denver, Colorado.
+email: hello@irwin.xyz
+title: nate.irwin.xyz
+url: "http://nate.irwin.xyz"
+twitter_username: nateirwin
+github_username: nateirwin
+
+# Build settings
+markdown: kramdown
