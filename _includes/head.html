@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="/assets/css/normalize.css">
   <link rel="stylesheet" href="/assets/css/skeleton.css">
   <link rel="stylesheet" href="/assets/css/site.css">
+  {% if page.css %}{% for stylesheet in page.css %}<link href="{{ stylesheet }}" rel="stylesheet">{% endfor %}{% endif %}
   <!--[if lt IE 9]>
   <script src="/assets/libs/html5shim/html5shim.min.js"></script>
   <![endif]-->

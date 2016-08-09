@@ -4,7 +4,7 @@ layout: default
 
 # Nate Irwin
 
-Hi. I lead the [NPMap team](http://www.nps.gov/npmap/) for the U.S. National Park Service and live and play in beautiful Colorado.
+Hi. I'm the digital lead for the U.S. National Park Service's [Harpers Ferry Center](https://www.nps.gov/hfc/) and I live and play in beautiful Colorado.
 
 ## Social
 
@@ -17,7 +17,7 @@ You can find me online on a number of different sites:
 
 ## Projects
 
-As a National Park Service employee, I've undertaken most of my latest work for the federal government. Take a look at the [NPMap website](http://www.nps.gov/npmap/) for more information about the National Park Service's digital mapping program. Most of the source code for the NPMap toolset is available in the public domain on GitHub:
+As a National Park Service employee, I've undertaken most of my latest work for the federal government. Most of my work is available on the agency's [GitHub organization](https://github.com/nationalparkservice). Some highlights:
 
 - [NPMap Builder](https://github.com/nationalparkservice/npmap-builder/)
 - Places:
@@ -26,7 +26,11 @@ As a National Park Service employee, I've undertaken most of my latest work for 
   - [Editor](https://github.com/nationalparkservice/places-editor/)
 - [NPMap.js](https://github.com/nationalparkservice/npmap.js/)
 - [Park Tiles](https://github.com/nationalparkservice/park-tiles/)
-- [NPMap Symbol Library](https://github.com/nationalparkservice/npmap-symbol-library/)
+- [Symbol Library](https://github.com/nationalparkservice/npmap-symbol-library/)
+
+## Life
+
+- [Music](music/)
 
 <!--
 ## Life
