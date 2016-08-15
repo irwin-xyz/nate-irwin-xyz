@@ -1,9 +1,7 @@
 var gulp = require('gulp');
 var secrets = require('./secrets.json');
 
-gulp.task('default', function () {
-  // place code for your default task here
-});
+gulp.task('default', function () {});
 gulp.task('fetch-spotify', function (cb) {
   var SpotifyApi = require('spotify-web-api-node');
   var spotify = new SpotifyApi({
@@ -13,55 +11,37 @@ gulp.task('fetch-spotify', function (cb) {
 
   spotify.clientCredentialsGrant()
     .then(function (data) {
-      spotify.setAccessToken(data.body['access_token']);
+      return data.body['access_token'];
+    })
+    .then(function (accessToken) {
+      spotify.setAccessToken(accessToken);
       spotify.getUserPlaylists('nateirwin')
         .then(function (data) {
-          var items = data.body.items;
-          var count = items.length;
-          var interval;
+          return data.body.items;
+        })
+        .then(function (playlists) {
+          var count = 0;
 
-          console.log('hello!');
-
-          console.log(items);
-
-          for (var i = 0; i < count; i++) {
-            var item = items[i];
-
-            spotify.getPlaylist('nateirwin', item.id)
+          playlists.forEach(function (playlist) {
+            spotify.getPlaylist('nateirwin', playlist.id)
               .then(function (data) {
+                playlist.tracks = data.body.tracks.items;
 
-
-
-
-                items[i].added = data.body;
                 count++;
-              }, function (error) {
-                console.log(error);
-                count++;
+
+                if (count === playlists.length) {
+                  var fs = require('fs');
+
+                  fs.writeFile('_data/playlists.json', JSON.stringify(playlists), function (error) {
+                    if (error) {
+                      return console.log('Error: ' + error);
+                    }
+
+                    cb();
+                  });
+                }
               });
-          }
-
-          interval = setInterval(function () {
-            if (count === items.length) {
-              var fs = require('fs');
-
-              clearInterval(interval);
-              console.log(items);
-              fs.writeFile('_data/playlists.json', JSON.stringify(items), function (error) {
-                  if (error) {
-                    return console.log(error);
-                  }
-
-                  cb();
-              });
-            }
-          }, 100);
-        }, function (error) {
-          console.log(error);
-          cb();
+          });
         });
-    }, function (error) {
-      console.log(error);
-      cb();
     });
 });
