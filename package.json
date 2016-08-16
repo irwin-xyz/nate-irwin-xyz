@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/irwin-xyz/nate-irwin-xyz#readme",
   "devDependencies": {
+    "goodreads": "0.0.4",
     "gulp": "^3.9.1",
     "querystring": "^0.2.0",
     "request": "^2.74.0",
