@@ -4,7 +4,7 @@ layout: default
 
 # Bucket list
 
-Things I want to do before I die. This is a living list that's in no particular order. I was inspired to publicize the list by [Dustin Curtis](https://dcurt.is/bucket-list).
+Things I want to do before I die. This is a living list that's in no particular order. I was inspired to put this on my website by [Dustin Curtis](https://dcurt.is/bucket-list).
 
 - Read a thousand books
 - Climb Denali
