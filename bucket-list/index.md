@@ -23,3 +23,4 @@ Things I want to do before I die. This is a living list that's in no particular 
 - Speak in front of a thousand people
 - Attend a Real Madrid vs. Barcelona soccer match at Camp Nou
 - Buy a "vacation home" (ski house, beach house, cabin, etc.)... and vacation there
+- Fish for salmon in Alaska
