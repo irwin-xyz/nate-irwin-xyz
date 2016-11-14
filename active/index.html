@@ -1,0 +1,47 @@
+---
+layout: default
+---
+
+<!--
+<link href="https://mapzen.com/js/mapzen.css" rel="stylesheet">
+<script src="https://mapzen.com/js/mapzen.min.js"></script>
+-->
+<script src="https://api.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.js"></script>
+<link href="https://api.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.css" rel="stylesheet" />
+<style>
+  html,
+  body,
+  .container,
+  #map {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+  #map {
+    position: absolute;
+  }
+</style>
+<div id="map"></div>
+<script>
+  mapboxgl.accessToken = 'pk.eyJ1IjoibmF0ZWlyd2luIiwiYSI6ImNpdWFkbnMxZDAwMXMyeW53d3I4MmE4NncifQ.4BePx37LMm5D1uDg8fDefA';
+  var map = new mapboxgl.Map({
+    center: {
+      lat: 39.776,
+      lng: -105.009
+    },
+    container: 'map',
+    style: 'mapbox://styles/mapbox/outdoors-v9',
+    zoom: 13
+  });
+  /*
+  var map = L.Mapzen.map('map', {
+    center: [
+      39.776,
+      -105.009
+    ],
+    scene: L.Mapzen.BasemapStyles.Walkabout,
+    zoom: 14
+  });
+  */
+</script>

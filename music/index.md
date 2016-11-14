@@ -6,7 +6,7 @@ layout: default
 
 # Music
 
-In November 2015, I started creating monthly playlists to track songs that "hit a nerve" with me during each month. Some months I don't listen to much music, while others are chock full of discovery.
+In November 2015, I started creating monthly playlists to track songs that "hit a nerve" with me during each month. Some months I don't listen to much music. Others are chock full of discovery.
 
 Click through each playlist's name to listen to it on Spotify.
 

@@ -6,5 +6,7 @@ url: "http://nate.irwin.xyz"
 twitter_username: nateirwin
 github_username: nateirwin
 
+permalink: /writing/:title
+
 # Build settings
 markdown: kramdown

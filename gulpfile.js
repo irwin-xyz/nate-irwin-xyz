@@ -21,14 +21,35 @@ gulp.task('fetch-goodreads', function (cb) {
     shelf: 'read',
     userID: '76558'
   }, function (json) {
-    var fs = require('fs');
+    var books = json.GoodreadsResponse.books[0].book;
 
-    fs.writeFile('_data/books.json', JSON.stringify(json.GoodreadsResponse.books[0].book), function (error) {
-      if (error) {
-        return console.log('Error: ' + error);
+    // TODO: This will work until you read 400+ books :-)
+    goodreads.getSingleShelf({
+      page: 2,
+      per_page: 200,
+      shelf: 'read',
+      userID: '76558'
+    }, function (json2) {
+      var books2 = json2.GoodreadsResponse.books[0].book;
+      var fs = require('fs');
+
+      for (var i = 0; i < books2.length; i++) {
+        books.push(books2[i]);
       }
 
-      count++;
+      books.sort(function (a, b) {
+        var nameA = a.title[0].toUpperCase();
+        var nameB = b.title[0].toUpperCase();
+
+        return (nameA < nameB) ? -1 : (nameA > nameB) ? 1 : 0;
+      });
+      fs.writeFile('_data/books.json', JSON.stringify(books), function (error) {
+        if (error) {
+          return console.log('Error: ' + error);
+        }
+
+        count++;
+      });
     });
   });
 
@@ -46,6 +67,9 @@ gulp.task('fetch-spotify', function (cb) {
     clientSecret: secrets.spotify.client_secret
   });
 
+  console.log(secrets.spotify.client_id);
+  console.log(secrets.spotify.client_secret);
+
   spotify.clientCredentialsGrant()
     .then(function (data) {
       return data.body['access_token'];
@@ -57,7 +81,38 @@ gulp.task('fetch-spotify', function (cb) {
           return data.body.items;
         })
         .then(function (playlists) {
+          var accept = [
+            'January',
+            'February',
+            'March',
+            'April',
+            'May',
+            'June',
+            'July',
+            'August',
+            'September',
+            'October',
+            'November',
+            'December'
+          ];
           var count = 0;
+          var i = playlists.length;
+
+          while (i--) {
+            var name = playlists[i].name;
+            var valid = false;
+
+            for (var j = 0; j < accept.length; j++) {
+              if (name.indexOf(accept[j]) > -1) {
+                valid = true;
+                break;
+              }
+            }
+
+            if (!valid) {
+              playlists.splice(i, 1);
+            }
+          }
 
           playlists.forEach(function (playlist) {
             spotify.getPlaylist('nateirwin', playlist.id)

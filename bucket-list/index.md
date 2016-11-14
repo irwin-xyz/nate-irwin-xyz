@@ -9,7 +9,7 @@ Things I want to do before I die. This is a living list that's in no particular 
 - Travel to Tibet
 - Read a thousand books
 - Climb Denali
-- See the Northern Lights
+- Camp under the Northern Lights
 - Ski in South America
 - Visit Hawaii
 - Tour New Zealand in an RV (and bungee jump off a bridge!)
@@ -17,11 +17,10 @@ Things I want to do before I die. This is a living list that's in no particular 
 - Visit Ethiopia
 - Visit outer space
 - Complete a 50-mile trail run
-- Have a kid and raise it well
+- Have a kid and raise her/him well
 - Ski in Japan
 - Speak in front of a thousand people
 - Visit Iceland
 - Attend a Real Madrid vs. Barcelona soccer match at Camp Nou
-- Buy a "vacation home" (ski house, beach house, cabin, etc.)... and vacation there
+- Buy a "vacation home" (ski house, beach house, cabin, etc.)... and spend a lot of time there
 - Fish for salmon in Alaska
-- Participate in a political party caucus
