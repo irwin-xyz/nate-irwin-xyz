@@ -25,6 +25,7 @@
   - Swarm
 - "Projects":
   - GitHub
+  - Stop linking to NPS sites, and store references to your work in this site to make sure they survive
   - What about non-coding projects???
 - "Movies and TV":
   - Plex
