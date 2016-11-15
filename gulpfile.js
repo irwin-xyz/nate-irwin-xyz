@@ -1,3 +1,4 @@
+var fs = require('fs');
 var gulp = require('gulp');
 var secrets = require('./secrets.json');
 
@@ -31,7 +32,6 @@ gulp.task('fetch-goodreads', function (cb) {
       userID: '76558'
     }, function (json2) {
       var books2 = json2.GoodreadsResponse.books[0].book;
-      var fs = require('fs');
 
       for (var i = 0; i < books2.length; i++) {
         books.push(books2[i]);
@@ -122,8 +122,6 @@ gulp.task('fetch-spotify', function (cb) {
                 count++;
 
                 if (count === playlists.length) {
-                  var fs = require('fs');
-
                   fs.writeFile('_data/playlists.json', JSON.stringify(playlists), function (error) {
                     if (error) {
                       return console.log('Error: ' + error);
@@ -136,4 +134,51 @@ gulp.task('fetch-spotify', function (cb) {
           });
         });
     });
+});
+gulp.task('fetch-strava', function (cb) {
+  var polyline = require('polyline');
+  var strava = require('strava-v3');
+
+  strava.athlete.listActivities({
+    access_token: secrets.strava.access_token
+  }, function (error, data) {
+    var json;
+
+    if (error) {
+      throw new Error(JSON.stringify(error));
+    }
+
+    console.log(data.length);
+
+    for (var i = 0; i < data.length; i++) {
+      var summaryPolyline = data[i].map.summary_polyline;
+
+      if (summaryPolyline) {
+        var latLngs = polyline.decode(summaryPolyline);
+        var reversedLatLngs = [];
+
+        for (var j = 0; j < latLngs.length; j++) {
+          var latLng = latLngs[j];
+
+          reversedLatLngs.push([latLng[1], latLng[0]]);
+        }
+
+        data[i].map.latLngs = reversedLatLngs;
+      }
+    }
+
+    json = JSON.stringify(data);
+
+    fs.writeFile('_data/activities.json', json, function (error) {
+      if (error) {
+        return console.log('Error: ' + error);
+      }
+
+      fs.writeFile('active/assets/data/activities.json', json, function (error) {
+        if (error) {
+          return console.log('Error: ' + error);
+        }
+      });
+    });
+  });
 });

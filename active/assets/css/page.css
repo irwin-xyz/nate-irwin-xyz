@@ -1,0 +1,30 @@
+html,
+body,
+.container {
+  height: 100%;
+}
+html,
+body,
+.container,
+#map {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+#map {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  top: 50px;
+}
+.title {
+  height: 50px;
+  left: 0;
+  position: absolute;
+  width: 100%;
+}
+  .title h1 {
+    font-size: 35px;
+    margin: 0;
+    padding: 8px;
+  }
