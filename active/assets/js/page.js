@@ -1,8 +1,18 @@
-/* globals mapboxgl, XMLHttpRequest */
+/* globals mapboxgl, moment, XMLHttpRequest */
 
+var activityColor = '#ff4b00';
+var storedActivities = {};
 var map;
 
-function loadFile (path, callback) {
+window.handleClick = function (el) {
+  for (var id in storedActivities) {
+    map.setPaintProperty(id, 'line-color', activityColor);
+  }
+
+  map.setPaintProperty(el.id, 'line-color', '#ffba43');
+  window.zoomTo(storedActivities[el.id].data.features[0].geometry.coordinates);
+};
+window.loadFile = function (path, callback) {
   var xhr = new XMLHttpRequest();
 
   xhr.onload = function () {
@@ -10,7 +20,16 @@ function loadFile (path, callback) {
   };
   xhr.open('GET', path, true);
   xhr.send();
-}
+};
+window.zoomTo = function (coordinates) {
+  var bounds = coordinates.reduce(function (bounds, coord) {
+    return bounds.extend(coord);
+  }, new mapboxgl.LngLatBounds(coordinates[0], coordinates[0]));
+
+  map.fitBounds(bounds, {
+    padding: 20
+  });
+};
 
 // Personal running heatmap: https://d22umfi1yqsdc.cloudfront.net/tiles/01000000000A7E3713B4D924-117260BC/14-3412-6217.png?1476717904
 
@@ -25,9 +44,9 @@ map = new mapboxgl.Map({
   zoom: 6
 })
   .on('load', function () {
-    loadFile('assets/data/activities.json', function (activities) {
+    window.loadFile('assets/data/activities.json', function (activities) {
       var allCoordinates = [];
-      var bounds;
+      var ul = '<ul>';
 
       activities = JSON.parse(activities);
 
@@ -42,7 +61,7 @@ map = new mapboxgl.Map({
               type: 'FeatureCollection',
               features: [{
                 type: 'Feature',
-                properties: {},
+                properties: activity,
                 geometry: {
                   type: 'LineString',
                   coordinates: latLngs
@@ -52,9 +71,17 @@ map = new mapboxgl.Map({
           };
           var id = activity.id.toString();
 
+          storedActivities[id] = geojson;
+
           for (var j = 0; j < latLngs.length; j++) {
             allCoordinates.push(latLngs[j]);
           }
+
+          ul += '' +
+            '<li id="' + id + '" onclick="handleClick(this);return false;">' +
+              '<div>' + activity.name + '<br>' + moment(activity.start_date_local).format('MMMM Do YYYY, h:mm:ss a') + '</div>' +
+            '</li>' +
+          '';
 
           map.addSource(id, geojson);
           map.addLayer({
@@ -64,21 +91,17 @@ map = new mapboxgl.Map({
               'line-join': 'round'
             },
             paint: {
-              'line-color': '#ff4b00',
-              'line-width': 5
+              'line-color': activityColor,
+              'line-width': 7
             },
             source: id,
             type: 'line'
-          });
+          }, 'water');
         }
       }
 
-      bounds = allCoordinates.reduce(function (bounds, coord) {
-        return bounds.extend(coord);
-      }, new mapboxgl.LngLatBounds(allCoordinates[0], allCoordinates[0]));
-
-      map.fitBounds(bounds, {
-        padding: 20
-      });
+      ul += '</ul>';
+      document.getElementsByClassName('sidebar')[0].innerHTML = ul;
+      window.zoomTo(allCoordinates);
     });
   });

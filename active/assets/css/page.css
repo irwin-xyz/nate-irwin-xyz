@@ -5,16 +5,21 @@ body,
 }
 html,
 body,
-.container,
-#map {
+.container {
   margin: 0;
   padding: 0;
   width: 100%;
 }
+.container {
+  max-width: 100%;
+}
 #map {
   bottom: 0;
   left: 0;
+  margin: 0;
+  padding: 0;
   position: absolute;
+  right: 200px;
   top: 50px;
 }
 .title {
@@ -28,3 +33,30 @@ body,
     margin: 0;
     padding: 8px;
   }
+/* TODO: Needs to be responsive */
+.sidebar {
+  border-top: solid 2px #000;
+  bottom: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: absolute;
+  right: 0;
+  top: 50px;
+  width: 200px;
+}
+  .sidebar ul {
+    margin: 0;
+  }
+  .sidebar li {
+    border-bottom: solid 1px #000;
+    border-top: solid 1px #000;
+    cursor: pointer;
+    list-style-type: none;
+    margin: 0;
+  }
+    .sidebar li:first-child {
+      border-top: none;
+    }
+    .sidebar li div {
+      padding: 8px;
+    }
