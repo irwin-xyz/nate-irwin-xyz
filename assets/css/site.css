@@ -16,3 +16,19 @@ ul {
   margin-left: 50px;
   margin-top: 25px;
 }
+.brand {
+  padding: 8px 0;
+}
+.nav {
+  float: right;
+  margin: 0;
+}
+  .nav li {
+    float: left;
+    list-style-type: none;
+    margin: 0;
+    padding: 0 10px 8px 10px;
+  }
+  .nav li:last-child {
+    padding-right: 0;
+  }
