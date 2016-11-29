@@ -3,6 +3,7 @@ var gulp = require('gulp');
 var secrets = require('./secrets.json');
 
 gulp.task('default', function () {});
+// gulp.task('fetch-all', )
 gulp.task('fetch-goodreads', function (cb) {
   var GoodreadsApi = require('goodreads');
   var goodreads = new GoodreadsApi.client({

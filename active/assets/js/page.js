@@ -77,9 +77,11 @@ map = new mapboxgl.Map({
             allCoordinates.push(latLngs[j]);
           }
 
+          console.log(activity);
+
           ul += '' +
             '<li id="' + id + '" onclick="handleClick(this);return false;">' +
-              '<div>' + activity.name + '<br>' + moment(activity.start_date_local).format('MMMM Do YYYY, h:mm:ss a') + '</div>' +
+              '<div>' + activity.name + '<br>' + activity.start_date_local + '</div>' +
             '</li>' +
           '';
 
