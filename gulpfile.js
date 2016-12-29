@@ -1,9 +1,14 @@
+var dateFormat = require('dateformat');
 var fs = require('fs');
 var gulp = require('gulp');
 var secrets = require('./secrets.json');
 
 gulp.task('default', function () {});
-// gulp.task('fetch-all', )
+gulp.task('fetch-all', [
+  'fetch-goodreads',
+  'fetch-spotify',
+  'fetch-strava'
+]);
 gulp.task('fetch-goodreads', function (cb) {
   var GoodreadsApi = require('goodreads');
   var goodreads = new GoodreadsApi.client({
@@ -152,11 +157,15 @@ gulp.task('fetch-strava', function (cb) {
     console.log(data.length);
 
     for (var i = 0; i < data.length; i++) {
-      var summaryPolyline = data[i].map.summary_polyline;
+      var obj = data[i];
+      var summaryPolyline = obj.map.summary_polyline;
 
       if (summaryPolyline) {
         var latLngs = polyline.decode(summaryPolyline);
         var reversedLatLngs = [];
+
+
+        // Also update date
 
         for (var j = 0; j < latLngs.length; j++) {
           var latLng = latLngs[j];
@@ -164,7 +173,10 @@ gulp.task('fetch-strava', function (cb) {
           reversedLatLngs.push([latLng[1], latLng[0]]);
         }
 
-        data[i].map.latLngs = reversedLatLngs;
+        console.log(data[i]);
+
+        obj.formattedDate = dateFormat(new Date(obj.start_date), 'mm-dd-yyyy, h:MM TT');
+        obj.map.latLngs = reversedLatLngs;
       }
     }
 
@@ -176,9 +188,18 @@ gulp.task('fetch-strava', function (cb) {
       }
 
       fs.writeFile('active/assets/data/activities.json', json, function (error) {
+        var regex = /<span class="updated"(.*?)>(.*?)<\/span>/;
+        var replace = require('gulp-replace');
+
         if (error) {
           return console.log('Error: ' + error);
         }
+
+        gulp.src([
+          'active/index.html'
+        ])
+          .pipe(replace(regex, '<span class="updated">' + dateFormat(new Date(), 'mmmm d, yyyy') + '</span>'))
+          .pipe(gulp.dest('active/.'));
       });
     });
   });

@@ -20,7 +20,7 @@ body,
   margin: 0;
   padding: 0;
   position: absolute;
-  right: 200px;
+  right: 160px;
   top: 50px;
 }
 .title {
@@ -31,14 +31,23 @@ body,
 }
   .title h1 {
     float: left;
-    font-size: 35px;
+    font-size: 27px;
     margin: 0;
     padding: 8px;
   }
   .title p {
+    display: none;
     float: right;
     margin-right: 8px;
     margin-top: 20px;
+  }
+  @media (min-width: 400px) {
+    .title h1 {
+      font-size: 35px;
+    }
+    .title p {
+      display: inherit;
+    }
   }
 /* TODO: Needs to be responsive */
 .sidebar {
@@ -49,7 +58,7 @@ body,
   position: absolute;
   right: 0;
   top: 50px;
-  width: 200px;
+  width: 160px;
 }
   .sidebar ul {
     margin: 0;

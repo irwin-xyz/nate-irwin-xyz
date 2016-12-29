@@ -1,4 +1,4 @@
-/* globals mapboxgl, moment, XMLHttpRequest */
+/* globals mapboxgl, XMLHttpRequest */
 
 var activityColor = '#ff4b00';
 var storedActivities = {};
@@ -30,9 +30,6 @@ window.zoomTo = function (coordinates) {
     padding: 20
   });
 };
-
-// Personal running heatmap: https://d22umfi1yqsdc.cloudfront.net/tiles/01000000000A7E3713B4D924-117260BC/14-3412-6217.png?1476717904
-
 mapboxgl.accessToken = 'pk.eyJ1IjoibmF0ZWlyd2luIiwiYSI6ImNpdWFkbnMxZDAwMXMyeW53d3I4MmE4NncifQ.4BePx37LMm5D1uDg8fDefA';
 map = new mapboxgl.Map({
   center: {
@@ -44,6 +41,7 @@ map = new mapboxgl.Map({
   zoom: 6
 })
   .on('load', function () {
+    map.addControl(new mapboxgl.NavigationControl());
     window.loadFile('assets/data/activities.json', function (activities) {
       var allCoordinates = [];
       var ul = '<ul>';
@@ -77,28 +75,27 @@ map = new mapboxgl.Map({
             allCoordinates.push(latLngs[j]);
           }
 
-          console.log(activity);
-
           ul += '' +
             '<li id="' + id + '" onclick="handleClick(this);return false;">' +
-              '<div>' + activity.name + '<br>' + activity.start_date_local + '</div>' +
+              '<div>' + activity.name + '<br>' + activity.formattedDate + '</div>' +
             '</li>' +
           '';
 
-          map.addSource(id, geojson);
-          map.addLayer({
-            id: id,
-            layout: {
-              'line-cap': 'round',
-              'line-join': 'round'
-            },
-            paint: {
-              'line-color': activityColor,
-              'line-width': 7
-            },
-            source: id,
-            type: 'line'
-          }, 'water');
+          map
+            .addSource(id, geojson)
+            .addLayer({
+              id: id,
+              layout: {
+                'line-cap': 'round',
+                'line-join': 'round'
+              },
+              paint: {
+                'line-color': activityColor,
+                'line-width': 7
+              },
+              source: id,
+              type: 'line'
+            }, 'water');
         }
       }
 
