@@ -6,7 +6,7 @@ layout: default
 
 Things I want to do before I die. This is a living list that's in no particular order. Thanks to [Dustin Curtis](https://dcurt.is/bucket-list) for the inspiration.
 
-- Build a product that
+- Build a product that has more than a million active users
 - Travel to Tibet
 - Read a thousand books
 - Climb Denali
@@ -18,6 +18,7 @@ Things I want to do before I die. This is a living list that's in no particular 
 - Visit Ethiopia
 - Visit outer space
 - Complete a 50-mile trail run
+- Have a kid and raise her/him well
 - Ski in Japan
 - Speak in front of a thousand people
 - Visit Iceland
