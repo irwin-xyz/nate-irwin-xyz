@@ -73,9 +73,6 @@ gulp.task('fetch-spotify', function (cb) {
     clientSecret: secrets.spotify.client_secret
   });
 
-  console.log(secrets.spotify.client_id);
-  console.log(secrets.spotify.client_secret);
-
   spotify.clientCredentialsGrant()
     .then(function (data) {
       return data.body['access_token'];
@@ -154,8 +151,6 @@ gulp.task('fetch-strava', function (cb) {
       throw new Error(JSON.stringify(error));
     }
 
-    console.log(data.length);
-
     for (var i = 0; i < data.length; i++) {
       var obj = data[i];
       var summaryPolyline = obj.map.summary_polyline;
@@ -164,16 +159,11 @@ gulp.task('fetch-strava', function (cb) {
         var latLngs = polyline.decode(summaryPolyline);
         var reversedLatLngs = [];
 
-
-        // Also update date
-
         for (var j = 0; j < latLngs.length; j++) {
           var latLng = latLngs[j];
 
           reversedLatLngs.push([latLng[1], latLng[0]]);
         }
-
-        console.log(data[i]);
 
         obj.formattedDate = dateFormat(new Date(obj.start_date), 'mm-dd-yyyy, h:MM TT');
         obj.map.latLngs = reversedLatLngs;
