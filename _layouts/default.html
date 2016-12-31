@@ -2,29 +2,39 @@
 <html lang="en">
   {% include head.html %}
   <body>
-    <div class="container">
-      <div class="row" style="margin-bottom:40px;">
-        <div class="column" style="border-bottom:1px solid #e1e1e1;">
-          <a class="brand" href="/">Nate Irwin</a>
-          <ul class="nav">
-            <li>
-              <a href="/active/">Active</a>
-            </li>
-            <li>
-              <a href="/books/">Books</a>
-            </li>
-            <li>
-              <a href="/bucket-list/">Bucket list</a>
-            </li>
-            <li>
-              <a href="/music/">Music</a>
-            </li>
-          </ul>
+    <div class="wrapper">
+      <div class="container">
+        <div class="row" style="margin-bottom:40px;">
+          <nav class="column" style="border-bottom:1px solid #e1e1e1;">
+            <a class="brand" href="/">Nate Irwin</a>
+            <ul class="nav">
+              <li>
+                <a href="/active/">Active</a>
+              </li>
+              <li>
+                <a href="/books/">Books</a>
+              </li>
+              <li>
+                <a href="/bucket-list/">Bucket list</a>
+              </li>
+              <li>
+                <a href="/music/">Music</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+        <div class="row" style="margin-bottom:40px;">
+          <div class="column">
+            {{ content }}
+          </div>
         </div>
       </div>
-      <div class="row">
-        <div class="column">
-          {{ content }}
+      <div class="push"></div>
+    </div>
+    <footer class="row">
+      <div class="column">
+        <div class="container">
+          <p>Site last updated: {{ site.time | date: "%B %e, %Y %r" }}</p>
         </div>
       </div>
     </div>

@@ -1,5 +1,25 @@
+* {
+  margin: 0;
+}
+html, body {
+  height: 100%;
+}
+.wrapper {
+  margin: 0 auto -50px;
+  min-height: 100%;
+}
+footer,
+.push {
+  height: 50px;
+}
+  footer .container {
+    border-top: 1px solid #e1e1e1;
+  }
+  footer p {
+    margin-top: 18px;
+  }
 body {
-  margin: 1em auto 4em auto;
+  margin: 1em auto 0 auto;
   padding: 0 18px;
 }
 h1 {
@@ -31,4 +51,10 @@ ul {
   }
   .nav li:last-child {
     padding-right: 0;
+  }
+a {
+  text-decoration: none;
+}
+  a:hover {
+    text-decoration: underline;
   }
