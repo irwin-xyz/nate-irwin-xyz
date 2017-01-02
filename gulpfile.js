@@ -79,7 +79,9 @@ gulp.task('fetch-spotify', function (cb) {
     })
     .then(function (accessToken) {
       spotify.setAccessToken(accessToken);
-      spotify.getUserPlaylists('nateirwin')
+      spotify.getUserPlaylists('nateirwin', {
+        limit: 50
+      })
         .then(function (data) {
           return data.body.items;
         })
@@ -100,6 +102,8 @@ gulp.task('fetch-spotify', function (cb) {
           ];
           var count = 0;
           var i = playlists.length;
+
+          console.log(i + ' playlists retrieved (out of 50 maximum in the request)');
 
           while (i--) {
             var name = playlists[i].name;

@@ -5,7 +5,7 @@
     <div class="wrapper">
       <div class="container">
         <div class="row" style="margin-bottom:40px;">
-          <nav class="column" style="border-bottom:1px solid #e1e1e1;">
+          <nav class="column">
             <a class="brand" href="/">Nate Irwin</a>
             <ul class="nav">
               <li>
@@ -24,9 +24,9 @@
           </div>
         </nav>
         <div class="row" style="margin-bottom:40px;">
-          <div class="column">
+          <main class="column">
             {{ content }}
-          </div>
+          </main>
         </div>
       </div>
       <div class="push"></div>
@@ -34,7 +34,7 @@
     <footer class="row">
       <div class="column">
         <div class="container">
-          <p>Site last updated: {{ site.time | date: "%B %e, %Y %r" }}</p>
+          <p>Updated: {{ site.time | date: "%B %e, %Y %r" }}</p>
         </div>
       </div>
     </div>

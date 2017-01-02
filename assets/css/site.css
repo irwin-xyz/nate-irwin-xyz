@@ -1,27 +1,31 @@
 * {
   margin: 0;
 }
-html, body {
+html,
+body {
   height: 100%;
+  margin: 0;
+  padding: 0;
 }
 .wrapper {
-  margin: 0 auto -50px;
+  margin: 0 auto -53px;
   min-height: 100%;
 }
-footer,
 .push {
-  height: 50px;
+  height: 53px;
 }
-  footer .container {
-    border-top: 1px solid #e1e1e1;
-  }
-  footer p {
-    margin-top: 18px;
-  }
-body {
-  margin: 1em auto 0 auto;
-  padding: 0 18px;
+nav {
+  border-bottom: 1px solid #e1e1e1;
+  padding-top: 1em;
 }
+footer .container {
+  border-top: 1px solid #e1e1e1;
+}
+  footer .container p {
+    margin: 0;
+    padding-bottom: 1em;
+    padding-top: 1em;
+  }
 h1 {
   font-size: 64px;
   font-weight: 300;
